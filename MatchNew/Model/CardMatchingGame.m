@@ -78,14 +78,17 @@ static const BOOL DEBUG_IT = YES;
     return self;
 }
 
+// Return card at index within array of cards
 - (Card *)cardAtIndex:(NSUInteger)index {
     return (index < [self.cards count]) ? self.cards[index] : nil;
 }
 
+// Return the last log entry
 - (NSString *)getLastLogEntry {
     return [self.gameLog lastObject];
 }
 
+// Bulk of logic for game here
 - (void)chooseCardAtIndex:(NSUInteger)index {
     
     NSMutableArray *cardsMatched = [[NSMutableArray alloc] init];
