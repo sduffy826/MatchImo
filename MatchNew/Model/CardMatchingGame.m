@@ -120,7 +120,8 @@ static const BOOL DEBUG_IT = YES;
             // that we find, when done with loop we check if that matches the number of
             // cards required to match... that's when we'll mark them as matched.
             if (cardsToCheck.count == self.matchesRequired) {
-                int posToAdd, cardScores = 0;
+                NSUInteger posToAdd = 0;
+                int cardScores = 0;
                 for (int i = 0; i < [cardsToCheck count] - 1; i++) {
                     Card *firstCard = [cardsToCheck objectAtIndex:i];
                     for (int j = i+1; j < cardsToCheck.count; j++) {
@@ -137,6 +138,7 @@ static const BOOL DEBUG_IT = YES;
                         
                         if (currCardScore != 0) {
                             // Put cards in the array of matched cards
+                            posToAdd = [cardsMatched indexOfObject:firstCard];
                             posToAdd = [cardsMatched indexOfObject:firstCard];
                             if (posToAdd == NSNotFound) {
                                 [cardsMatched addObject:firstCard];
@@ -180,7 +182,7 @@ static const BOOL DEBUG_IT = YES;
               if (cardsToCheck.count > self.matchesRequired) {
                   card.chosen = NO;
               }
-            NSLog(@"Number of matches is %d",[cardsMatched count]);
+            NSLog(@"Number of matches is %d",(int)[cardsMatched count]);
         }
         
         

@@ -59,14 +59,14 @@
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender {
-    int chosenButtonIndex = [self.cardButtons indexOfObject:sender];
+    NSUInteger chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:chosenButtonIndex];
     [self updateUI];
 }
 
 - (void)updateUI {
     for (UIButton *cardButton in self.cardButtons) {
-        int cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
+        NSUInteger cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardButtonIndex];
         
         [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
@@ -74,7 +74,7 @@
                               forState:UIControlStateNormal];
         // If card is matched then card is disabled
         cardButton.enabled = !card.isMatched;
-        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", self.game.score];
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %d", (int)self.game.score];
     }
     
     if (self.game.gameStarted) {
